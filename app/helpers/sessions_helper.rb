@@ -35,6 +35,10 @@ module SessionsHelper
     user == current_user
   end
 
+  def mentor?(user)
+    user.mentor
+  end
+
   # Returns true if the user is logged in, false otherwise.
   def logged_in?
     !current_user.nil?

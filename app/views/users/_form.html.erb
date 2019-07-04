@@ -13,5 +13,11 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, class: 'form-control' %>
 
+  <%= f.label :mentor, class: "checkbox inline" do %>
+    <%= f.check_box :mentor, checked: true   %>
+    <span>Are you a Mentor?</span>
+  <% end %>
+
+
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
