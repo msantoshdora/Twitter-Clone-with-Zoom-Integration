@@ -47,11 +47,11 @@ class UsersController < ApplicationController
   
   def create
   	@user = User.new(user_params)
-    if params[:user][:mentor] == "1"
-      @user.mentor = true
-    else
-      @user.mentor = false
-    end
+    #if params[:user][:mentor] == "1"  #check if it is a good way or not. Or adding in permission is good.
+     # @user.mentor = true
+    #else
+     # @user.mentor = false
+    #end
     debugger
   	if @user.save
       log_in @user

@@ -14,7 +14,7 @@
   <%= f.password_field :password_confirmation, class: 'form-control' %>
 
   <%= f.label :mentor, class: "checkbox inline" do %>
-    <%= f.check_box :mentor, checked: true   %>
+    <%= f.check_box :mentor,  disabled: (logged_in? && mentor?(current_user)) %>
     <span>Are you a Mentor?</span>
   <% end %>
 

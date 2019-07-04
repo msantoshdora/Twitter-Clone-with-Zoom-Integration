@@ -30,6 +30,13 @@ User.create!(name:  "Last User",
              mentor: false)
 
 
+
+
+10.times do |n|
+  name = Faker::Name.name
+  Topic.create!(name:name)
+end
+
 users = User.order(:created_at).take(6)
 5.times do
   content = Faker::Lorem.sentence(5)

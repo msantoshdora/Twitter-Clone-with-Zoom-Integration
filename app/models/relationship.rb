@@ -9,7 +9,6 @@ class Relationship < ApplicationRecord
   def validate_followed
   	#add validation to check if the followed user is mentor or not
   	user = User.find(self.followed_id)
-  	user.mentor
-  	debugger
+  	user.mentor ? true : false
   end
 end
