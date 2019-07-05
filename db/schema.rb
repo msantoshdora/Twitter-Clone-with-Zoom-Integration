@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190704140935) do
+ActiveRecord::Schema.define(version: 20190705044255) do
+
+  create_table "expertizations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_expertizations_on_topic_id"
+    t.index ["user_id", "topic_id"], name: "index_expertizations_on_user_id_and_topic_id", unique: true
+    t.index ["user_id"], name: "index_expertizations_on_user_id"
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"

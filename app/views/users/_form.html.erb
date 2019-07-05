@@ -17,7 +17,13 @@
     <%= f.check_box :mentor,  disabled: (logged_in? && mentor?(current_user)) %>
     <span>Are you a Mentor?</span>
   <% end %>
+  
+ <!--  <% @domains.each do |topic| %>   
+   <%= render 'users/about_form', :obj => topic %>
+  <% end %> -->
 
-
+    <% @domains.each do |topic| %>
+  <input class= "checkbox inline"  type="checkbox" name="expert[]" value="<%= topic.id %>"> <%= topic.name %> <br>
+  <% end %>
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

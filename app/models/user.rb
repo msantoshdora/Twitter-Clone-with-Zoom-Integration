@@ -9,6 +9,9 @@ class User < ApplicationRecord
 
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many:expertizations
+  has_many:topics, through: :expertizations
+
 	attr_accessor :remember_token
 	before_save { self.email = self.email.downcase }
 	validates :name, presence: true, length: {maximum: 50}
@@ -44,7 +47,12 @@ class User < ApplicationRecord
   
   # Follows a user.
   def follow(other_user)
-    following << other_user
+    if other_user.mentor
+     following << other_user
+   else
+    #do nothing
+    end
+   #debugger
   end
 
   # Unfollows a user.
@@ -55,6 +63,21 @@ class User < ApplicationRecord
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # add topic to a mentor
+  def addTopic(domain)
+    topics << domain
+  end
+
+  # remove topic from a mentor
+  def removeTopic(domain)
+    topics.delete(domain)
+  end
+
+  # Returns true if the current mentor knows the topic
+  def knowsTopic?(domain)
+     topics.include?(domain)
   end
 
 # Remembers a user in the database for use in persistent sessions.

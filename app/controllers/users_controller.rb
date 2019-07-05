@@ -29,6 +29,8 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    debugger
+    @domains = Topic.all
   end
 
   def following
@@ -44,7 +46,8 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
-  
+  def about_form
+  end
   def create
   	@user = User.new(user_params)
     #if params[:user][:mentor] == "1"  #check if it is a good way or not. Or adding in permission is good.
@@ -52,10 +55,11 @@ class UsersController < ApplicationController
     #else
      # @user.mentor = false
     #end
-    debugger
+    #debugger
   	if @user.save
       log_in @user
       flash[:success] = "Welcome to the SAMPLE App!"
+     # render :template => 'users/about_form'
   		redirect_to @user
   	else
   		render 'new'
@@ -64,6 +68,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    debugger
     if @user.update_attributes(user_params)
       # Handle a successful update.
       flash[:success] = "Profile updated"

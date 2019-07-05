@@ -1,0 +1,16 @@
+<% provide(:title, 'Topics') %>
+<h1>TOPICS</h1>
+
+<ul class="users">
+  <%= render @topics %>
+</ul>
+
+<!-- <table>
+<% @topics.each do |topic| %>
+	<tr>
+      <td><%= topic.name %></td>
+      <td><%= pluralize(topic.users.count, "Mentor") %> </td>
+      
+    </tr>
+  <% end %>
+</table> -->

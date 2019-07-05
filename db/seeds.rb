@@ -33,7 +33,7 @@ User.create!(name:  "Last User",
 
 
 10.times do |n|
-  name = Faker::Name.name
+  name = Faker::Name.first_name
   Topic.create!(name:name)
 end
 
@@ -51,3 +51,11 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+
+# Expertizations
+users = User.all
+user = users.first
+mentors = users[1..6]
+topicss = Topic.all
+topicss.each { |m| user.addTopic(m)}
