@@ -1,0 +1,10 @@
+<div class="row">
+<h2> Add Topics: </h2>
+<li>
+<% user_topics = @user.topics%>
+<% @topics.each do |topic| %>
+
+<input class= "checkbox inline"  type="checkbox" name="expert[]" value="<%= topic.id%>" <%= user_topics.include?(topic) ? "checked" : "" %> > <%= topic.name %> <br>
+<% end %>
+</li>
+</div>

@@ -66,12 +66,12 @@ class User < ApplicationRecord
   end
 
   # add topic to a mentor
-  def addTopic(domain)
+  def add_topic(domain)
     topics << domain
   end
 
   # remove topic from a mentor
-  def removeTopic(domain)
+  def remove_topic(domain)
     topics.delete(domain)
   end
 
