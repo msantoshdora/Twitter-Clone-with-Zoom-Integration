@@ -58,4 +58,4 @@ users = User.all
 user = users.first
 mentors = users[1..6]
 topicss = Topic.all
-topicss.each { |m| user.addTopic(m)}
+topicss.each { |m| user.add_topic(m)}

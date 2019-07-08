@@ -4,6 +4,8 @@ class MicropostsController < ApplicationController
 
 
   	def create
+      byebug
+
     	@micropost = current_user.microposts.build(micropost_params)
     	if @micropost.save
       		flash[:success] = "Micropost created!"
@@ -25,7 +27,7 @@ class MicropostsController < ApplicationController
   	private
 
     def micropost_params
-      params.require(:micropost).permit(:content, :picture)
+      params.require(:micropost).permit(:content, :attachment)
     end
 
     def correct_user

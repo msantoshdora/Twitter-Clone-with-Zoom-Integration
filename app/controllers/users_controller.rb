@@ -106,11 +106,12 @@ class UsersController < ApplicationController
         @user.add_topic(Topic.find(topic_id))
       end
     end
+    check_mentor =@user.mentor?
 
     if @user.update_attributes(user_params)
       # Handle a successful update.
       flash[:success] = "Profile updated"
-      redirect_to @user
+      redirect_to (@user.mentor? && !check_mentor && params[:expert].nil?) ? about_url : @user
     else
       render 'edit'
     end
