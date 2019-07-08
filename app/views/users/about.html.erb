@@ -1,0 +1,18 @@
+<% provide(:title, 'Edit user') %>
+<% provide(:button_text, 'Save changes') %>
+<h1>Update your profile</h1>
+
+<h2> Add Topics: </h2>
+
+<%= form_tag do  %>
+  <div class="users">
+	<li>
+		<% Topic.all.each do |topic| %>
+			<input class= "checkbox inline"  type="checkbox" name="expert[]" value="<%= topic.id%>" %> > <%= topic.name %> <br>
+		<% end %>
+	</li>
+</div>
+ <%= submit_tag("Add", :class =>"btn btn-primary")  %>
+<% end %>
+
+

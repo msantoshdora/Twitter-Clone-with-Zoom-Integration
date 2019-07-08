@@ -3,6 +3,7 @@ class UsersController < ApplicationController
                                         :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
+  before_action :allow_only_mentor, only: [:about, :update_about]
 
   
   def index
@@ -45,8 +46,28 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
-  def about_form
+
+  def about
+    @user = current_user
+    @topics = Topic.all
   end
+  
+  def update_about
+      @user = current_user
+      if params[:expert].nil?
+        @user.mentor = false
+        @user.save
+      else
+        params[:expert].each do |id|
+          topic_id = id.to_i
+          if !@user.topics.include?(Topic.find(topic_id))
+            @user.add_topic(Topic.find(topic_id))
+          end
+        end
+      end
+      redirect_to @user
+  end
+
   def create
   	@user = User.new(user_params)
     #if params[:user][:mentor] == "1"  #check if it is a good way or not. Or adding in permission is good.
@@ -59,15 +80,20 @@ class UsersController < ApplicationController
       log_in @user
       flash[:success] = "Welcome to the SAMPLE App!"
      # render :template => 'users/about_form'
-  		redirect_to @user
+      if !@user.mentor?
+  		  redirect_to @user
+      else 
+        redirect_to about_url
+      end
   	else
   		render 'new'
   	end
   end
 
+
+
   def update
     @user = User.find(params[:id])
-    
     user_topics_ids = @user.topics.pluck(:id)
     if params[:expert].present? && user_topics_ids != params[:expert].map(&:to_i)
       debugger
@@ -113,6 +139,10 @@ class UsersController < ApplicationController
      # Confirms an admin user.
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+
+    def allow_only_mentor
+      redirect_to(root_url) unless logged_in? && current_user.mentor? 
     end
 
 end
