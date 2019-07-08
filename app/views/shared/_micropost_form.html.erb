@@ -1,7 +1,7 @@
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.cktext_area :content, placeholder: "Compose new micropost...",  :as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}}, class: "form-control" %>
+    <%= f.cktext_area :content, placeholder: "Compose new micropost...",  :as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}} %>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
   <span class="picture" id="micropost_picture">
