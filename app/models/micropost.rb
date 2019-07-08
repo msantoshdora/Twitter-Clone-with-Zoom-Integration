@@ -5,7 +5,7 @@ class Micropost < ApplicationRecord
   mount_uploader :attachment, AttachmentUploader # Tells rails to use this uploader for this model.
   validates :user_id, presence: true
   validates_acceptance_of :mentor  #It validates that micropost are only for mentors.
-  validates :content, presence: true, length: { maximum: 140 }
+  validates :content, presence: true
   #validate :picture_size
 
   private

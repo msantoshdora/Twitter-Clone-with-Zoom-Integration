@@ -4,7 +4,7 @@
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
-    <%= micropost.content %>
+    <%= micropost.content.html_safe %>
     <%= link_to "Download File", micropost.attachment_url if micropost.attachment? %>  
     </span>
   <span class="timestamp">
