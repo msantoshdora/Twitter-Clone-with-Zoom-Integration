@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
-                                        :following, :followers]
+                                        :following, :followers,:show]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   before_action :allow_only_mentor, only: [:about, :update_about]
@@ -94,6 +94,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    debugger
     user_topics_ids = @user.topics.pluck(:id)
     if params[:expert].present? && user_topics_ids != params[:expert].map(&:to_i)
       debugger

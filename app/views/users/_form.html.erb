@@ -2,14 +2,17 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.label :name %>
+   <span class="glyphicon glyphicon-user"></span>
   <%= f.text_field :name, class: 'form-control' %>
 
   <%= f.label :email %>
+  <i class="fa fa-envelope-o"></i> 
   <%= f.email_field :email, class: 'form-control' %>
 
   <%= f.label :password %>
+  <i class="fa fa-key icon"></i>
   <%= f.password_field :password, class: 'form-control' %>
-
+  
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, class: 'form-control' %>
 

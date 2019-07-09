@@ -1,6 +1,12 @@
+
+<script type="text/javascript">
+   var editor = CKEDITOR.instances[name];
+    if (editor) { editor.remove; }
+</script>
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
+    <%= f.label :Create_Post  %>
     <%= f.cktext_area :content, placeholder: "Compose new micropost...",  :as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}} %>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
@@ -17,3 +23,7 @@
     }
   });
 </script> -->
+
+<script>
+  
+  </script>

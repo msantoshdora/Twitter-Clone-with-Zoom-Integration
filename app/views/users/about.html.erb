@@ -4,15 +4,17 @@
 
 <h2> Add Topics: </h2>
 
-<%= form_tag do  %>
-  <div class="users">
-	<li>
-		<% Topic.all.each do |topic| %>
-			<input class= "checkbox inline"  type="checkbox" name="expert[]" value="<%= topic.id%>" %>  <%= topic.name %> <br>
-		<% end %>
-	</li>
-</div>
- <%= submit_tag("Add", :class =>"btn btn-primary")  %>
+<%= form_tag do  %>  
+<div class="topic_container" style="margin-top:20px;">
+  <ul class="ks-cboxtags">
+  	<% user_topics = @user.topics%>
+	<% @topics.each do |topic| %>
+    <li><input type="checkbox" name="expert[]" id="<%= topic.id %>" <%= user_topics.include?(topic) ? "checked" : "" %> value="<%= topic.id%>"><label for="<%= topic.id %>"><%= topic.name %></label></li>
+    <% end %>
+  </ul>
+</div>	
+ <%= submit_tag("Add", :class =>"btn btn-primary", data: { confirm: "Are you sure?" })  %>
 <% end %>
+
 
 
