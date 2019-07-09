@@ -2,6 +2,13 @@
 <% provide(:title, 'Mentor') %>
 
 <h1>Mentors expert in "<%= @t.name %>"  </h1>
-<div class="users">
-        <%= render @all_user %>
-</div>
+
+<table class="table">
+	<thead>
+      <th scope="col"> Mentor</th>
+      <th scope="col">Profile</th>
+	</thead>
+	 <tbody>
+    <%= render @all_user %>
+    </tbody>
+</table>

@@ -2,9 +2,14 @@
 <h1>Mentors</h1>
 
 <%= will_paginate @mentors %>
-
-<ul class="users">
-  <%= render @mentors %>
-</ul>
+<table class="table">
+	<thead>
+      <th scope="col"> Mentor</th>
+      <th scope="col">Profile</th>
+	</thead>
+	 <tbody>
+    <%= render @mentors %>
+    </tbody>
+</table>
 
 <%= will_paginate @mentors %>
