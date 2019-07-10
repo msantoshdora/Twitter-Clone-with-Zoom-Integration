@@ -6,9 +6,11 @@
     <%= form_for(:session, url: login_path) do |f| %>
 
       <%= f.label :email %>
+       <i class="fa fa-envelope-o"></i>
       <%= f.email_field :email, class: 'form-control' %>
 
       <%= f.label :password %>
+        <i class="fa fa-key icon"></i>
       <%= f.password_field :password, class: 'form-control' %>
 
       <%= f.label :remember_me, class: "checkbox inline" do %>

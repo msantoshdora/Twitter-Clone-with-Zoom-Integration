@@ -41,7 +41,11 @@ h1 {
   margin-bottom: 30px;
   text-align: center;
 }
-
+/* navbar */
+.navbar-default {
+    background-color: #F8F8F8;
+    border-color: #E7E7E7;
+}
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
@@ -63,13 +67,13 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: white;
+  color: gray;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
   &:hover {
-    color: white;
+    color: gray;
     text-decoration: none;
   }
 }
@@ -332,11 +336,17 @@ span.picture {
   text-indent: 0;
 }
 
-
-
-
 #alignpost{
   width: 855px;
   margin:10px auto;
   float:right;
 }
+
+.info-msg {
+margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px 3px 3px 3px;
+  color: #059;
+  background-color: #BEF;
+}
+

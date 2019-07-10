@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   
   get '/add', to: 'topics#new'
   post '/add', to: 'topics#create'
-  
+   
 
   resources :users do
     member do

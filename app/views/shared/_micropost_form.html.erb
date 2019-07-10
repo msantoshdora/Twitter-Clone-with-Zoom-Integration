@@ -1,8 +1,5 @@
 
-<script type="text/javascript">
-   var editor = CKEDITOR.instances[name];
-    if (editor) { editor.remove; }
-</script>
+
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
@@ -11,7 +8,8 @@
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
   <span class="picture" id="micropost_picture">
-    <%= f.file_field :attachment %>
+        <%= f.label :Add_Linkable_Files %>
+    <%= f.file_field :attachment%>
   </span>
 <% end %>
 
@@ -24,6 +22,26 @@
   });
 </script> -->
 
-<script>
+<script type="text/javascript">
+  // $(document).ready(function(){
+    
+  //   for (var name in CKEDITOR.instances) {
+  //    var editor = CKEDITOR.instances[name];
+  //    if (editor) { editor.destroy(true); }
+  //   }
+
+  //    CKEDITOR.replace('micropost_content');
+  //   //jQuery('#cke_cke_micropost_content').remove();
+  //   });
   
-  </script>
+  setTimeout(function() {
+    if(jQuery('.cke_editor_micropost_content').length > 1){
+      jQuery('.cke_editor_micropost_content').last().remove()
+    }
+  })
+  
+
+</script>
+<!-- cke_micropost_content
+
+cke_micropost_content -->

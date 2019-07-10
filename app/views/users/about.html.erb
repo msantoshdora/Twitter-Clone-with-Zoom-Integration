@@ -1,3 +1,8 @@
+
+<% if !current_page?(action: 'about') %>
+      <% controller.redirect_to root_url %>
+<%end %>
+
 <% provide(:title, 'Edit user') %>
 <% provide(:button_text, 'Save changes') %>
 <h1>Complete your profile!</h1>
@@ -13,8 +18,13 @@
     <% end %>
   </ul>
 </div>	
- <%= submit_tag("Add", :class =>"btn btn-primary", data: { confirm: "Are you sure?" })  %>
+ <%= submit_tag("Add", :class =>"btn btn-primary", data: { confirm: "NOTE: If nothing selected, Your profile will get converted to Normal User. Do you want to continue?" })  %>
 <% end %>
+
+<div class="info-msg">
+  <i class="fa fa-info-circle"></i>
+  NOTE: If nothing selected, Your profile will get converted to Normal User.
+</div>
 
 
 

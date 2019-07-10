@@ -1,19 +1,20 @@
 <% if logged_in? %>
-<% if mentor?(current_user) %>
+
   <div class="row">
     <aside class="col-md-4">
          <section class="user_info">
             <%= render 'shared/user_info' %>
          </section>
-          <section class="stats">
+         <section class="stats">
             <%= render 'shared/stats' %>
-          </section>
+         </section>
     <!--Micropsot code was here -->
   </aside>
+  <% if mentor?(current_user) %>
          <section class="micropost_form">
             <%= render 'shared/micropost_form' %>
          </section>
-<%end%>
+  <%end%>
          <div class="col-md-8"  id="alignpost">
              <h3 align="center">All Posts</h3>
                <%= render 'shared/feed' %>
@@ -28,12 +29,4 @@
     	</h2>
     	<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
     </div>
-    <style>
-body 
-{
-  background: {
-    image: asset-url("tutor.jpg");
-  }
-}
-</style>
 <% end %>

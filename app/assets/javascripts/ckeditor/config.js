@@ -1,7 +1,8 @@
 CKEDITOR.editorConfig = function(config) {
   config.language = 'en';
  // config.width = '700';
-  config.uiColor = '#D3D3D3';
+
+ //config.filebrowserUploadMethod  = "form";
   config.filebrowserBrowseUrl = "/ckeditor/attachment_files";
   config.filebrowserImageBrowseLinkUrl = "/ckeditor/pictures";
   config.filebrowserImageBrowseUrl = "/ckeditor/pictures";

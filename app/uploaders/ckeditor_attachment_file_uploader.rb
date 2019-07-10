@@ -3,7 +3,7 @@ require 'carrierwave'
 
 class CkeditorAttachmentFileUploader < CarrierWave::Uploader::Base
   include Ckeditor::Backend::CarrierWave
-
+  self.inheritance_column = nil
   # Include RMagick or ImageScience support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
