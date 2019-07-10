@@ -52,7 +52,17 @@ class UsersController < ApplicationController
   end
   
   def update_about
+    debugger
       @user = current_user
+     # @user = User.find(params[:id])
+      user_topics_ids = @user.topics.pluck(:id)
+
+      if params[:expert].nil? && !user_topics_ids.nil?
+           user_topics_ids.each do |topic_id|
+             @user.remove_topic(Topic.find(topic_id))
+           end
+      end
+
       if params[:expert].nil?
         @user.mentor = false
         @user.save
@@ -74,7 +84,7 @@ class UsersController < ApplicationController
     #else
      # @user.mentor = false
     #end
-    #debugger
+    debugger
   	if @user.save
       log_in @user
       flash[:success] = "Welcome to the SAMPLE App!"
@@ -93,8 +103,14 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    debugger
     user_topics_ids = @user.topics.pluck(:id)
+
+    if params[:expert].nil? && !user_topics_ids.nil?
+      user_topics_ids.each do |topic_id|
+        @user.remove_topic(Topic.find(topic_id))
+      end
+    end
+
     if params[:expert].present? && user_topics_ids != params[:expert].map(&:to_i)
       debugger
       user_topics_ids.each do |topic_id|

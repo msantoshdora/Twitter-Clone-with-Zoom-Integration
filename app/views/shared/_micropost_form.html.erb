@@ -4,9 +4,9 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.label :Create_Post  %>
-    <%= f.cktext_area :content, placeholder: "Compose new micropost...",  :as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}} %>
+    <%= f.cktext_area :content, placeholder: "Compose new micropost...", id:"message" ,:as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}} %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.submit "Post", id:"sendButton", class: "btn btn-primary" %>
   <span class="picture" id="micropost_picture">
         <%= f.label :Add_Linkable_Files %>
     <%= f.file_field :attachment%>
@@ -34,6 +34,22 @@
   //   //jQuery('#cke_cke_micropost_content').remove();
   //   });
   
+ // $(document).ready(function(){
+//   setTimeout(function(){
+//    $('#sendButton').prop('disabled',true);
+
+//     if($('.cke_editable').firstElementChild.textContent.length >0){
+//            $('#sendButton').prop('disabled', false);     
+//         }
+
+//     $('#message').keyup(function(){
+//         if($('.cke_editable').textContent.length >0){
+//            $('#sendButton').prop('disabled', false);     
+//         }  
+//     })
+// //}); 
+// });
+
   setTimeout(function() {
     if(jQuery('.cke_editor_micropost_content').length > 1){
       jQuery('.cke_editor_micropost_content').last().remove()
