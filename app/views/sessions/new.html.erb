@@ -24,3 +24,26 @@
     <p>New user? <%= link_to "Sign up now!", signup_path %></p>
   </div>
 </div>
+
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+    $("form").submit(function(e){
+           var forminvalid = false;
+           $('form input').each(function(){
+                   if($(this).val() == ''){
+                      forminvalid = true;
+                   }
+           });
+             if(forminvalid){
+              alert("Fields cannot be left empty")
+               e.cancelable;
+                return false;
+        }
+    })
+
+});
+</script>

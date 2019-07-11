@@ -87,7 +87,7 @@ class UsersController < ApplicationController
     debugger
   	if @user.save
       log_in @user
-      flash[:success] = "Welcome to the SAMPLE App!"
+      flash[:success] = "Welcome to CONNECT!"
      # render :template => 'users/about_form'
       if !@user.mentor?
   		  redirect_to @user

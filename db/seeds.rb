@@ -1,4 +1,4 @@
-User.create!(name:  "Example User",
+User.create!(name:  "Admin",
              email: "example@railstutorial.org",
              password:              "foobar",
              password_confirmation: "foobar",

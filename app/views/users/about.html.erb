@@ -14,18 +14,65 @@
 <div class="topic_container" style="margin-top:20px;">
   <ul class="ks-cboxtags">
   	<% user_topics = @user.topics%>
-	<% @topics.each do |topic| %>
-    <li><input type="checkbox" name="expert[]" id="<%= topic.id %>" <%= user_topics.include?(topic) ? "checked" : "" %> value="<%= topic.id%>"><label for="<%= topic.id %>"><%= topic.name %></label></li>
+  	<% @topics.each do |topic| %>
+      <li>
+        <input type="checkbox" name="expert[]" id="<%= topic.id %>" <%= user_topics.include?(topic) ? "checked" : "" %> value="<%= topic.id%>"><label for="<%= topic.id %>"><%= topic.name %></label></li>
     <% end %>
   </ul>
 </div>	
- <%= submit_tag("Add", :class =>"btn btn-primary", data: { confirm: "NOTE: If nothing selected, Your profile will get converted to Normal User. Do you want to continue?" })  %>
+ <%= submit_tag("Add", :class =>"btn btn-primary", :id => "sendButton", data: { confirm: "NOTE: If nothing selected, Your profile will get converted to Normal User. Do you want to continue?" }) %>
 <% end %>
 
 <div class="info-msg">
   <i class="fa fa-info-circle"></i>
-  NOTE: If nothing selected, Your profile will get converted to Normal User.
+  NOTE: You are mentor. Please choose the topics you are expert in.
 </div>
 
 
 
+<script>
+
+//This below function checks if content is filled or not
+
+
+
+
+ // $(function(){
+ //      $('#sendButton').click(function(){
+ //        var val = [];
+ //        $(':checkbox:checked').each(function(i){
+ //          val[i] = $(this).val();
+ //        });
+ //          if(val.length == 0){
+ //                     alert("Please choose some!");
+ //                     $("form").submit(function(e){
+ //                       var v = [];
+ //                         $(':checkbox:checked').each(function(j){
+ //                        v[j] = $(this).val();
+ //                          });
+ //                        if(v.length == 0){
+ //                          alert(e.cancelable);
+ //                          return false;
+ //                        }
+ //                      })
+ //          }
+ //      });
+ //    });
+
+$(function(){
+    $("form").submit(function(e){
+           var v = [];
+           $(':checkbox:checked').each(function(j){
+           v[j] = $(this).val();
+           });
+             if(v.length == 0){
+              alert("Please choose atleast one expertise!")
+               e.cancelable;
+                return false;
+        }
+    })
+
+});
+
+
+</script>

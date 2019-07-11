@@ -11,10 +11,13 @@ class MicropostsController < ApplicationController
        if !params[:meeting_created].nil?
                    zoom_obj = Zoom.new
                    email = current_user.email
-                   zoom_url = zoom_obj.create_meeting(email)
-                  # zoom_url = auto_link(zoom_url, :urls) 
                    meeting_title = params[:meeting_title]
                    meeting_starttime = params[:meeting_starttime]
+
+                   zoom_url = zoom_obj.create_meeting("santosh.dora@chronus.com",meeting_title,meeting_starttime)
+                  # userId,title,time
+                  # zoom_url = auto_link(zoom_url, :urls) 
+                   
                   
        end
 

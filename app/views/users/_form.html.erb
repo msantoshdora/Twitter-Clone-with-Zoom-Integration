@@ -25,3 +25,25 @@
 
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+    $("form").submit(function(e){
+           var forminvalid = false;
+           $('form input').each(function(){
+                   if($(this).val() == ''){
+                      forminvalid = true;
+                   }
+           });
+             if(forminvalid){
+              alert("All fields are mandatory")
+               e.cancelable;
+                return false;
+        }
+    })
+
+});
+</script>
