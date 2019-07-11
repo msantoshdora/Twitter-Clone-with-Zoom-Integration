@@ -4,8 +4,59 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.label :Create_Post  %>
-    <%= f.cktext_area :content, placeholder: "Compose new micropost...", id:"message" ,:as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}} %>
+    <%= f.cktext_area :content, placeholder: "Compose new micropost...", id:"message", :required => true ,:as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}}%>
+    
+  
+  <div id="meeting_data" style="display: none">
+    Meeting Topic:
+    <input type="text" name="meeting_text"  id="meeting_topic" />
+    Start Time (date and time): <input type="datetime-local" name="starttime">
+    Duration: <input type="number" name="duration">
+     <div class="info-msg">
+      <i class="fa fa-info-circle"></i>
+      Must have a Description about the meeting - Do add a Description for your subscribers!
+    </div>
+</div>
+  
+
+
+<!-- <p>
+    <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" name="button" value="1">
+        <i class="fa fa-calendar" aria-hidden="true"> Create Meeting</i>
+    </button>
+</p>
+ -->
+
+<p>
+<ul class="ks-cboxtags">
+    <li>
+      <input type="checkbox" name="meeting_created" id="meeting_created" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><label for="meeting_created">
+        <i class="fa fa-calendar" aria-hidden="true"> Create Meeting</i></label></li>
+</ul>
+</p>
+
+
+<!-- Adding Collapsible view  -->
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+     <div id="meeting_data" >
+    Meeting Topic:
+    <input type="text" name="meeting_title"  id="meeting_topic" />
+    Start Time (date and time): <input type="datetime-local" name="meeting_starttime">
+   
+     <div class="info-msg">
+      <i class="fa fa-info-circle"></i>
+      Must have a Description about the meeting - Do add a Description for your subscribers!
+    </div>
   </div>
+</div>
+
+  </div>
+
+
+<!-- Collapsible view added above -->
+
+
   <%= f.submit "Post", id:"sendButton", class: "btn btn-primary" %>
   <span class="picture" id="micropost_picture">
         <%= f.label :Add_Linkable_Files %>
@@ -23,6 +74,8 @@
 </script> -->
 
 <script type="text/javascript">
+
+
   // $(document).ready(function(){
     
   //   for (var name in CKEDITOR.instances) {
@@ -50,12 +103,38 @@
 // //}); 
 // });
 
+ //This destroys all recurring micropost frames
   setTimeout(function() {
     if(jQuery('.cke_editor_micropost_content').length > 1){
       jQuery('.cke_editor_micropost_content').last().remove()
     }
   })
   
+
+
+
+
+//This below function checks if content is filled or not
+ $(function () {
+   $("#sendButton").click(function () {
+      if(jQuery("#cke_message iframe").contents().find("body").text().length < 1 )
+      {
+          alert("Content of Post cannot be Blank!");
+           $("form").submit(function(e){
+              if(jQuery("#cke_message iframe").contents().find("body").text().length < 1 ){
+                e.preventDefault();
+                return false;
+              }
+            })
+      }
+
+    });
+
+  });
+
+
+
+
 
 </script>
 <!-- cke_micropost_content

@@ -4,7 +4,15 @@
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
+    <% if !micropost.meeting.nil? %>
+      <p><strong>Title:</strong> <%= micropost.meeting.title %></p>
+      <span><strong>Description:</strong></span>
+    <% end %>
     <%= micropost.content.html_safe %>
+    <% if !micropost.meeting.nil? %>
+      <strong>JOIN LINK:</strong> <%= auto_link(micropost.meeting.join_url) %>
+    <% end %>
+
     <%= link_to "Download File", micropost.attachment_url if micropost.attachment? %>  
     </span>
   <span class="timestamp">

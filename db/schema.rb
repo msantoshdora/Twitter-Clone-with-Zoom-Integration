@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190708133309) do
+ActiveRecord::Schema.define(version: 20190711112456) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 20190708133309) do
     t.index ["user_id"], name: "index_expertizations_on_user_id"
   end
 
+  create_table "meetings", force: :cascade do |t|
+    t.string "title"
+    t.string "date"
+    t.string "join_url"
+    t.integer "micropost_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["micropost_id", "created_at"], name: "index_meetings_on_micropost_id_and_created_at"
+    t.index ["micropost_id"], name: "index_meetings_on_micropost_id"
+  end
+
   create_table "microposts", force: :cascade do |t|
     t.text "content"
     t.integer "user_id"
@@ -41,6 +52,7 @@ ActiveRecord::Schema.define(version: 20190708133309) do
     t.datetime "updated_at", null: false
     t.string "picture"
     t.string "attachment"
+    t.boolean "meetingpost", default: false
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end

@@ -7,8 +7,24 @@ class MicropostsController < ApplicationController
       byebug
 
     	@micropost = current_user.microposts.build(micropost_params)
+      
+       if !params[:meeting_created].nil?
+                   zoom_obj = Zoom.new
+                   email = current_user.email
+                   zoom_url = zoom_obj.create_meeting(email)
+                  # zoom_url = auto_link(zoom_url, :urls) 
+                   meeting_title = params[:meeting_title]
+                   meeting_starttime = params[:meeting_starttime]
+                  
+       end
+
+      
     	if @micropost.save
-      		flash[:success] = "Micropost created!"
+          if !params[:meeting_created].nil?
+              @meeting = @micropost.build_meeting(title:meeting_title, date:meeting_starttime,join_url:zoom_url)
+              @meeting.save
+          end
+      		flash[:success] = "Post created!"
       		redirect_to root_url
     	else
         byebug
@@ -19,7 +35,7 @@ class MicropostsController < ApplicationController
 
   	def destroy
   		 @micropost.destroy
-	    flash[:success] = "Micropost deleted"
+	    flash[:success] = "Post deleted"
     	redirect_to request.referrer || root_url
   	end
 

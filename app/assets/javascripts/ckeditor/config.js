@@ -3,6 +3,7 @@ CKEDITOR.editorConfig = function(config) {
  // config.width = '700';
 
  //config.filebrowserUploadMethod  = "form";
+ //config.ignoreEmptyParagraph = false;
   config.filebrowserBrowseUrl = "/ckeditor/attachment_files";
   config.filebrowserImageBrowseLinkUrl = "/ckeditor/pictures";
   config.filebrowserImageBrowseUrl = "/ckeditor/pictures";

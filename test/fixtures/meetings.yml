@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  date: MyString
+  join_url: MyString
+  micropost: one
+
+two:
+  title: MyString
+  date: MyString
+  join_url: MyString
+  micropost: two

@@ -23,7 +23,10 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'carrierwave',             '1.2.2'
 gem 'mini_magick',             '4.7.0'
 gem 'ckeditor',                '~> 4.1'
-
+gem 'jwt'
+gem 'json'
+gem 'popper_js'
+gem 'rails_autolink'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
