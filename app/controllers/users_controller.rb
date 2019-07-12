@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   before_action :allow_only_mentor, only: [:about, :update_about]
+ 
   
   def index
      @users = User.paginate(page: params[:page]) # Here the page parameter comes from paramas[:page], 
@@ -52,7 +53,6 @@ class UsersController < ApplicationController
   end
   
   def update_about
-    debugger
       @user = current_user
      # @user = User.find(params[:id])
       user_topics_ids = @user.topics.pluck(:id)
@@ -84,14 +84,17 @@ class UsersController < ApplicationController
     #else
      # @user.mentor = false
     #end
-    debugger
   	if @user.save
       log_in @user
       flash[:success] = "Welcome to CONNECT!"
+
      # render :template => 'users/about_form'
       if !@user.mentor?
   		  redirect_to @user
       else 
+        obj = Zoom.new
+        obj.create_user(@user.email)
+        flash[:success] = "ZOOM activation link sent"
         redirect_to about_url
       end
   	else
@@ -112,7 +115,6 @@ class UsersController < ApplicationController
     end
 
     if params[:expert].present? && user_topics_ids != params[:expert].map(&:to_i)
-      debugger
       user_topics_ids.each do |topic_id|
         @user.remove_topic(Topic.find(topic_id))
       end

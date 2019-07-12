@@ -4,7 +4,6 @@ class MicropostsController < ApplicationController
 
 
   	def create
-      byebug
 
     	@micropost = current_user.microposts.build(micropost_params)
       
@@ -30,7 +29,6 @@ class MicropostsController < ApplicationController
       		flash[:success] = "Post created!"
       		redirect_to root_url
     	else
-        byebug
   		  @feed_items = current_user.feed.paginate(page: params[:page])
   		  render 'static_pages/home'
     	end

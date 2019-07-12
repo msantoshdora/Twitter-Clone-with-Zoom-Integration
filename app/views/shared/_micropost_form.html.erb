@@ -37,22 +37,22 @@
 
 
 <!-- Adding Collapsible view  -->
+
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
      <div id="meeting_data" >
     Meeting Topic:
     <input type="text" name="meeting_title"  id="meeting_topic" />
-    Start Time (date and time): <input type="datetime-local" name="meeting_starttime">
+    Start Time (date and time): <input type="datetime-local" id="ms" name="meeting_starttime">
    
      <div class="info-msg">
       <i class="fa fa-info-circle"></i>
-      Must have a Description about the meeting - Do add a Description for your subscribers!
+        Meeting Topic, Start Time & Description are must to create a meeting.
     </div>
   </div>
 </div>
 
   </div>
-
 
 <!-- Collapsible view added above -->
 
@@ -63,6 +63,9 @@
     <%= f.file_field :attachment%>
   </span>
 <% end %>
+
+
+
 
 <!-- <script type="text/javascript">
   $('#micropost_picture').bind('change', function() {
@@ -115,24 +118,39 @@
 
 
 //This below function checks if content is filled or not
- $(function () {
-   $("#sendButton").click(function () {
-      if(jQuery("#cke_message iframe").contents().find("body").text().length < 1 )
-      {
-          alert("Content of Post cannot be Blank!");
-           $("form").submit(function(e){
-              if(jQuery("#cke_message iframe").contents().find("body").text().length < 1 ){
-                e.preventDefault();
+ // $(function () {
+ //   $("#sendButton").click(function () {
+ //      if(jQuery("#cke_message iframe").contents().find("body").text().length < 1 )
+ //      {
+ //          alert("Content of Post cannot be Blank!");
+ //           $("form").submit(function(e){
+ //              if(jQuery("#cke_message iframe").contents().find("body").text().length < 1 ){
+ //                e.preventDefault();
+ //                return false;
+ //              }
+ //            })
+ //      }
+
+ //    });
+
+ //  });
+
+
+
+
+$(function(){
+    $("form").submit(function(e){
+
+             if(jQuery("#cke_message iframe").contents().find("body").text().length < 1){
+                alert("Content cannot be blank!")
+                 e.cancelable;
                 return false;
-              }
-            })
-      }
+             }
+              
 
-    });
+    })
 
-  });
-
-
+});
 
 
 

@@ -1,6 +1,6 @@
 class Micropost < ApplicationRecord
   belongs_to :user
-  has_one :meeting
+  has_one :meeting, dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   #mount_uploader :picture, PictureUploader
   mount_uploader :attachment, AttachmentUploader # Tells rails to use this uploader for this model.

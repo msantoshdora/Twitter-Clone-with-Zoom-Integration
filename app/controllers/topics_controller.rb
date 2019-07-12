@@ -26,7 +26,6 @@ class TopicsController < ApplicationController
 	end
 
 	def create
-		debugger
 		@topics = Topic.all
 		@new_topic = Topic.new(name: params[:topic])
 		if  @new_topic.save

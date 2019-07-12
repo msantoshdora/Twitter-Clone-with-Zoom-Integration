@@ -1,22 +1,40 @@
 
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <li id="micropost-<%= micropost.id %>">
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
-    <% if !micropost.meeting.nil? %>
-      <p><strong>Title:</strong> <%= micropost.meeting.title %></p>
-      <span><strong>Description:</strong></span>
-    <% end %>
-    <%= micropost.content.html_safe %>
-    <% if !micropost.meeting.nil? %>
-      <strong>JOIN LINK:</strong> <%= auto_link(micropost.meeting.join_url) %>
-    <% end %>
+      <% if !micropost.meeting.nil? %>
 
-    <%= link_to "Download File", micropost.attachment_url if micropost.attachment? %>  
-    </span>
+              <div class="card" >
+                
+                <div class="container">
+
+                <h4 >  <b><%= micropost.meeting.title %></b> </h4>
+                        <h5>Date(yyyy-mm-dd):   <%= get_date(micropost.meeting.date) %></h5>
+                        <h5>Time(UTC):   <%= get_time(micropost.meeting.date) %></h5>
+                        
+                   <!-- Trigger/Open the Modal -->
+
+                          <p>
+                            <a onclick="document.getElementById('id01').style.display='block'"
+                            class="btn btn-info" role="button"> <i class="fa fa-users" aria-hidden="true"></i> ABOUT MEETING</a>
+                          </p>
+                          <p><a href= "<%= micropost.meeting.join_url %>" class="btn btn-danger" role="button">JOIN MEETING</a></p>
+                </div>
+              </div>
+      <% else %>
+             <p><%= micropost.content.html_safe %></p>
+       <% end %>
+             <% if micropost.attachment? %>
+                  <i class="fa fa-file" aria-hidden="true"></i>
+                  <%= link_to "Attached File", micropost.attachment_url  %> 
+             <% end %>
+
+
+  </span>
   <span class="timestamp">
-    <%byebug if micropost.created_at.nil?%>
+  
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
     <% if current_user?(micropost.user) %>
       <%= link_to "delete", micropost, method: :delete,
@@ -24,12 +42,28 @@
     <% end %>
   </span>
 </li>
-<!-- <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-  <div class="card-header"></div>
-  <div class="card-body">
-    <h5 class="card-title"></h5>
-    <p class="card-text"><%= micropost.content.html_safe %></p>
-    <p> <%= link_to "Download File", micropost.attachment_url if micropost.attachment? %>  </p>
-  </div>
-</div> -->
 
+
+
+
+
+<!-- The Modal -->
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id01').style.display='none'" 
+      class="w3-button w3-display-topright">&times;</span>
+       <p><%= micropost.content.html_safe %></p>
+    
+    </div>
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+  
+   
+
+</script>
